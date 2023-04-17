@@ -178,6 +178,7 @@ ami = "ami-04cebc8d6c4f297a3"
 instance_type = "c5.large"
 subnet_id = aws_subnet.kubernetes_subnet_a_pv.id
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group.id]
+key_name = aws_key_pair.eli_key_pair.key_name
 tags = {
 Name = "kubernetes-control-plane-1"
 }
@@ -188,6 +189,7 @@ ami = "ami-04cebc8d6c4f297a3"
 instance_type = "c5.large"
 subnet_id = aws_subnet.kubernetes_subnet_b_pv.id
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group.id]
+key_name = aws_key_pair.eli_key_pair.key_name
 tags = {
 Name = "kubernetes-control-plane-2"
 }
@@ -198,6 +200,7 @@ ami = "ami-04cebc8d6c4f297a3"
 instance_type = "c5.large"
 subnet_id = aws_subnet.kubernetes_subnet_c_pv.id
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group.id]
+key_name = aws_key_pair.eli_key_pair.key_name
 tags = {
 Name = "kubernetes-control-plane-3"
 }
@@ -208,6 +211,7 @@ ami = "ami-04cebc8d6c4f297a3"
 instance_type = "c5.large"
 subnet_id = aws_subnet.kubernetes_subnet_a_pv.id
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group.id]
+key_name = aws_key_pair.eli_key_pair.key_name
 tags = {
 Name = "kubernetes-worker-1"
 }
@@ -218,6 +222,7 @@ ami = "ami-04cebc8d6c4f297a3"
 instance_type = "c5.large"
 subnet_id = aws_subnet.kubernetes_subnet_b_pv.id
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group.id]
+key_name = aws_key_pair.eli_key_pair.key_name
 tags = {
 Name = "kubernetes-worker-2"
 }
@@ -228,6 +233,7 @@ ami = "ami-04cebc8d6c4f297a3"
 instance_type = "c5.large"
 subnet_id = aws_subnet.kubernetes_subnet_c_pv.id
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group.id]
+key_name = aws_key_pair.eli_key_pair.key_name
 tags = {
 Name = "kubernetes-worker-3"
 }
@@ -256,12 +262,5 @@ value = [
 aws_instance.kubernetes_Bastion.public_ip,
 ]
 }
-
-
-
-
-
-
-
 
 
