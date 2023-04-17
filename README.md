@@ -1,6 +1,5 @@
-# ilhwankim1
 
-** Eli Kim의 이것저것
+# Eli Kim의 이것저것
 
 컨텐츠는
 1. shellScrips
