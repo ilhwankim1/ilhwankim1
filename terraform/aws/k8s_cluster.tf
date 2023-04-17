@@ -160,6 +160,11 @@ resource "aws_key_pair" "eli_key_pair" {
   public_key = file("/Users/mzc01-kimih/hello-cdk/workspace/terraform/team-aws-account/eli_k8s.pub")
 }
 
+# 쉘 스크립트 넣어주기
+data "template_file" "user_data" {
+  template = file("/Users/mzc01-kimih/devops/script/bastion.sh")
+}
+
 # EC2 인스턴스 생성
 resource "aws_instance" "kubernetes_Bastion" {
 ami = "ami-04cebc8d6c4f297a3"
@@ -168,6 +173,7 @@ subnet_id = aws_subnet.kubernetes_subnet_a_pb.id
 associate_public_ip_address = true
 vpc_security_group_ids = [aws_security_group.kubernetes_security_group_bastion.id]
 key_name = aws_key_pair.eli_key_pair.key_name
+user_data = data.template_file.user_data.rendered
 tags = {
 Name = "kubernetes-bastion"
 }
