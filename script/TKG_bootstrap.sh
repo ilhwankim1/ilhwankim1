@@ -70,6 +70,10 @@ sudo mv imgpkg-linux-amd64 /usr/local/bin/imgpkg
 curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.14.0/kind-linux-amd64
 chmod +x kind && sudo mv ./kind /usr/local/bin/kind
 
+echo 'source <(kubectl completion bash)' >> ~/.bashrc
+echo 'alias k=kubectl' >> ~/.bashrc
+echo 'complete -F __start_kubectl k' >> ~/.bashrc
+
 source ~/.bashrc
 
 aws ec2 create-key-pair --key-name default --output json | jq .KeyMaterial -r > default.pem
