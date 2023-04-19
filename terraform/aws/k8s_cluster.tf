@@ -7,6 +7,10 @@ provider "aws" {
 # VPC 생성
 resource "aws_vpc" "Eli-test-kubernetes_vpc" {
   cidr_block = "172.30.0.0/16"
+  
+  tag = {
+    name = k8s-vpc
+  }
 }
 
 # 서브넷 생성
