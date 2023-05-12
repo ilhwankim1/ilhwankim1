@@ -7,6 +7,9 @@ provider "aws" {
 # VPC 생성
 resource "aws_vpc" "Eli-test-kubernetes_vpc" {
   cidr_block = "172.30.0.0/16"
+  tags = {
+    Name = "eks-vpc"
+  }
 }
 
 # 서브넷 생성
@@ -14,18 +17,30 @@ resource "aws_subnet" "kubernetes_subnet_a_pb" {
   vpc_id = aws_vpc.Eli-test-kubernetes_vpc.id
   cidr_block = "172.30.1.0/24"
   availability_zone = "ap-northeast-2a"
+  
+  tags = {
+    Name = "EKS-vpc-A_PB"
+  }
 }
 
 resource "aws_subnet" "kubernetes_subnet_b_pb" {
   vpc_id = aws_vpc.Eli-test-kubernetes_vpc.id
   cidr_block = "172.30.2.0/24"
   availability_zone = "ap-northeast-2b"
+ 
+  tags = {
+    Name = "EKS-vpc-B_PB"
+  }
 }
 
 resource "aws_subnet" "kubernetes_subnet_c_pb" {
   vpc_id = aws_vpc.Eli-test-kubernetes_vpc.id
   cidr_block = "172.30.3.0/24"
   availability_zone = "ap-northeast-2c"
+  
+  tags = {
+    Name = "EKS-vpc-C_PB"
+  }
 }
 
 resource "aws_subnet" "kubernetes_subnet_a_pv" {
@@ -34,6 +49,7 @@ resource "aws_subnet" "kubernetes_subnet_a_pv" {
   availability_zone = "ap-northeast-2a"
   tags = {
   "kubernetes.io/cluster/terraform-eks-cluster" = "shared"
+  Name = "EKS-VPC-A_PB"
   }
 }
 
@@ -43,6 +59,7 @@ resource "aws_subnet" "kubernetes_subnet_b_pv" {
   availability_zone = "ap-northeast-2b"
   tags = {
   "kubernetes.io/cluster/terraform-eks-cluster" = "shared"
+  Name = "EKS-VPC-B_PB"
   }
 }
 
@@ -52,6 +69,7 @@ resource "aws_subnet" "kubernetes_subnet_c_pv" {
   availability_zone = "ap-northeast-2c"
   tags = {
   "kubernetes.io/cluster/terraform-eks-cluster" = "shared"
+  Name = "EKS-VPC-C_PB"
   }
 }
 

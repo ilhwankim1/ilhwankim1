@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IPADDRESS="$(ip addr show | awk '/inet / {if ($2 ~ /^172\.31\./) {gsub("/[0-9]+", "", $2); print $2}}')"
+IPADDRESS="$(ip addr show | awk '/inet / {if ($2 ~ /^172\.30\./) {gsub("/[0-9]+", "", $2); print $2}}')"
 
 sudo apt-get update
 sudo apt-get install -y \
