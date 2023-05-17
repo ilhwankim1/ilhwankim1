@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#IP주소 환경변수로 반영->172.30. 부분은 지정해줄것
 IPADDRESS="$(ip addr show | awk '/inet / {if ($2 ~ /^172\.30\./) {gsub("/[0-9]+", "", $2); print $2}}')"
 
 sudo apt-get update

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+##ip주소 환경변수 만들기
 IPADDRESS="$(ip addr show | awk '/inet / {if ($2 ~ /^172\.31\./) {gsub("/[0-9]+", "", $2); print $2}}')"
 
 sudo apt-get update
