@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg ca-certificates
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -41,18 +41,9 @@ echo 'complete -F __start_kubectl k' >> ~/.bashrc
 
 source ~/.bashrc
 
-URL=https://dl.google.com/dl/cloudsdk/channels/rapid/install_google_cloud_sdk.bash
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+sudo apt-get update && sudo apt-get install google-cloud-cli
+sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
 
-function download {
-  scratch="$(mktemp -d -t tmp.XXXXXXXXXX)" || exit
-  script_file="$scratch/install_google_cloud_sdk.bash"
-
-  echo "Downloading Google Cloud SDK install script: $URL"
-  curl -# "$URL" > "$script_file" || exit
-  chmod 775 "$script_file"
-
-  echo "Running install script from: $script_file"
-  "$script_file" "$@"
-}
-
-download "$@"
+echo "Done"
